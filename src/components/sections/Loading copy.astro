@@ -1,0 +1,137 @@
+---
+import { Image } from "astro:assets";
+
+import heroImg from "@/assets/hero/heroImg.avif";
+---
+
+<section class="flex items-center justify-center h-screen w-full">
+  <!-- LOADING -->
+
+  <div id="loadingBg" class="absolute w-full h-screen bg-black z-1"></div>
+  <!-- <article
+    class="fixed z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden leading-[2]"
+  >
+    <p id="loadingText" class="h1 font-birthstone">Loading ...</p>
+  </article> -->
+
+  <!-- HERO -->
+  <!-- <Image
+    id={"heroImg"}
+    src={heroImg}
+    alt="hero image"
+    class="-z-10 absolute object-cover w-full h-full overflow-hidden"
+    quality={100}
+  /> -->
+
+  <!-- <div id="heroContainer" class="container mx-auto h-screen">
+    <article
+      class="-z-10 flex flex-col items-center justify-center w-full h-full"
+    >
+      <h2
+        id="heroTitle"
+        class="h1 mb-5 font-birthstone leading-tight text-center"
+      >
+        ANGEL PHOTOGRAPHY
+      </h2>
+      <div
+        class="flex flex-col md:flex-row md:items-center md:justify-around text-center items-center gap-2 w-full"
+      >
+        <h4 class="heroSubTitle h4 font-neue-montreal">ENCANTANDO MARCOS</h4>
+        <div
+          id="line"
+          class="w-full max-w-[320px] md:max-w-[100px] h-1 bg-secondary"
+        >
+        </div>
+        <h4 class="heroSubTitle h4 font-neue-montreal">MEMORIAS INFINITAS</h4>
+      </div>
+      <div class="fixed bottom-5 flex items-center flex-col gap-2">
+        <p class="text-lg font-medium text-secondary font-pp-neue-montreal">
+          Dezliza para ver más
+        </p>
+        <div class="w-1 h-[100px] bg-secondary"></div>
+      </div>
+    </article>
+  </div> -->
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { Flip } from "gsap/Flip";
+
+  gsap.registerPlugin(Flip);
+
+  const loadingBg = document.getElementById("loadingBg") as HTMLElement;
+  const loadingText = document.getElementById("loadingText") as HTMLElement;
+  const heroTitle = document.querySelector("#heroTitle") as HTMLElement;
+  const heroSubTitle = [
+    ...document.querySelectorAll(".heroSubTitle"),
+  ] as HTMLElement[];
+  const heroSubTitleLine = document.querySelector("#line") as HTMLElement;
+  const heroImage = document.querySelector("#heroImg") as HTMLElement;
+
+  const nav = [...document.querySelectorAll("nav *")] as HTMLElement[];
+
+  const master = gsap.timeline({});
+
+  const setInitialStates = () => {
+    gsap.set(nav, {
+      y: 24,
+      autoAlpha: 0,
+    });
+
+    gsap.set(heroSubTitle, {
+      y: 64,
+      autoAlpha: 0,
+    });
+
+    gsap.set(heroSubTitleLine, {
+      y: 64,
+      autoAlpha: 0,
+    });
+
+    gsap.set([loadingText, heroTitle], {
+      autoAlpha: 0,
+      yPercent: 100,
+    });
+  };
+
+  const loaderAnimation = () => {
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power2.out",
+      },
+    });
+
+    tl.to(loadingText, {
+      yPercent: 0,
+      delay: 0.3,
+    })
+      .to(loadingText, {
+        yPercent: -130,
+        delay: 0.5,
+      })
+      .to(loadingBg, {
+        yPercent: -100,
+        duration: 1,
+        ease: "power4.inOut",
+      });
+
+    return tl;
+  };
+
+  const heroImageAnimation = () => {
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power3.inOut",
+        duration: 2,
+      },
+    });
+
+    tl.from(heroImage, {
+      scale: 0.3, // Reducir el efecto de zoom inicial para suavizar la animación
+    });
+
+    return tl;
+  };
+  master.add(setInitialStates()).add(loaderAnimation());
+</script>

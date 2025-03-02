@@ -1,0 +1,53 @@
+@import url("https://fonts.cdnfonts.com/css/pp-neue-montreal");
+@import url("https://fonts.googleapis.com/css2?family=Birthstone");
+
+@import "tailwindcss";
+
+* {
+  scroll-behavior: smooth;
+}
+
+@theme {
+  --font-neue-montreal: PP Neue Montreal, sans-serif;
+  --font-birthstone: Birthstone, cursive;
+
+  --color-secondary: #d0b8ac;
+}
+
+@utility container {
+  padding-inline: 15px;
+  margin-inline: auto;
+
+  @variant sm {
+    padding-inline: 25px;
+  }
+
+  @variant lg {
+    padding-inline: 80px;
+  }
+
+  @variant xl {
+    padding-inline: 120px;
+  }
+}
+
+body {
+  @apply bg-black text-white;
+}
+.h1 {
+  @apply text-[60px] font-birthstone leading-12 font-bold tracking-wide;
+}
+.h2 {
+  @apply text-4xl font-birthstone font-bold tracking-widest;
+}
+.h3 {
+  @apply text-3xl font-neue-montreal  font-bold tracking-wider;
+}
+.h4 {
+  @apply text-2xl font-neue-montreal  font-bold tracking-wider;
+}
+
+.p,
+.span {
+  @apply text-base font-neue-montreal md:text-lg;
+}

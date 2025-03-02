@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+
+import heroImg from "@/assets/hero/heroImg.avif";
+import Loading from "./Loading.astro";
+import Socials from "../shared/hero/Socials.astro";
+---
+
+<section
+  class="relative flex items-center justify-center w-full h-screen overflow-hidden"
+>
+  <!-- <Loading /> -->
+
+  <!-- HERO  -->
+  <Image
+    id={"heroImg"}
+    src={heroImg}
+    alt="hero image"
+    class="-z-10 absolute object-cover w-full h-full overflow-hidden"
+    quality={100}
+  />
+  <div id="heroContainer" class="container h-screen">
+    <article
+      class="relative z-10 flex flex-col items-center justify-center w-full h-full"
+    >
+      <h2 class="h1 bottom-4 absolute mb-5 text-left">ANGEL PHOTOGRAPHY</h2>
+    </article>
+    <!-- SOCIALS -->
+    <Socials />
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const heroImage = document.querySelector("#heroImg") as HTMLElement;
+
+  // Create the zoom-out animation
+  gsap.to(heroImage, {
+    scale: 1.5, // End with the original scale
+    scrollTrigger: {
+      // markers: true, // Adds visual markers for start and end points
+
+      trigger: "#heroContainer", // Trigger the animation when the container is in view
+      start: "top top", // Start the animation when the top of the container hits the top of the viewport
+      end: "bottom top", // End the animation when the bottom of the container hits the top of the viewport
+      scrub: true, // Smoothly scrub through the animation as you scroll
+    },
+  });
+</script>

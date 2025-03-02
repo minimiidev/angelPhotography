@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+
+import heroImg from "@/assets/hero/heroImg.avif";
+---
+
+<div id="loadingBg" class="z-2 absolute w-full h-screen bg-black">
+  <article
+    id="loadingText"
+    class="z-3 top-1/2 left-1/2 text-center w-full fixed overflow-hidden -translate-x-1/2 -translate-y-1/2"
+  >
+    <p class="h1 font-birthstone">Loading ...</p>
+  </article>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  const preLoadingBg = document.getElementById("loadingBg");
+  const preLoadingText = document.querySelector("#loadingText p");
+  const nav = [...document.querySelectorAll("nav *")];
+
+  const master = gsap.timeline({});
+
+  const setInitialStates = () => {
+    gsap.set(preLoadingText, {
+      yPercent: 100,
+    });
+  };
+
+  const preLoaderAnimation = () => {
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power2.out",
+      },
+    });
+
+    tl
+      .to(preLoadingText, {
+        yPercent: 0,
+        delay: 0.3,
+      })
+      .to(preLoadingText, {
+        yPercent: -105,
+        delay: 1,
+      })
+      .to(preLoadingBg, {
+        yPercent: -100,
+        delay: 1.5,
+        ease: "power4.inOut",
+      }),
+      "<";
+
+    return tl;
+  };
+
+  master.add(setInitialStates()).add(preLoaderAnimation());
+</script>

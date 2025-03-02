@@ -1,0 +1,96 @@
+---
+import { links } from "@/data";
+import Icon from "astro-iconify";
+---
+
+<nav
+  id="nav"
+  class="fixed top-0 left-0 z-50 w-full py-5 transition-all duration-300"
+>
+  <div class="container flex items-center justify-between mx-auto">
+    <Icon name="material-symbols:camera" size="48px" />
+
+    <ul class="md:flex items-center justify-between hidden">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.path} class="px-3 py-2 font-medium">
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <button id="menu" class="md:hidden">
+      <Icon
+        id="iconMenu"
+        name="line-md:menu"
+        size="48px"
+        class="transition-all duration-300 ease-in-out"
+      />
+    </button>
+  </div>
+</nav>
+
+<div
+  id="sideMenu"
+  class="w-full h-full bg-secondary fixed top-0 left-[100%] z-40 duration-300 ease-in-out transition-all"
+>
+  <div
+    class="container px-[100px] flex flex-col items-center justify-center h-full"
+  >
+    <ul class="flex flex-col items-center justify-between">
+      {
+        links.map((link) => (
+          <li class="">
+            <a
+              href={link.path}
+              class="inline-block h4 text-center min-w-[120px] px-3 py-2 font-medium"
+            >
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+<script>
+  const nav = document.getElementById("nav") as HTMLElement;
+
+  const logo = document.getElementById("logo") as HTMLElement;
+  const textNavBar = document.getElementById("textNavBar") as HTMLElement;
+
+  const sideMenu = document.getElementById("sideMenu") as HTMLElement;
+  const menu = document.getElementById("menu") as HTMLElement;
+  const iconMenu = document.getElementById("iconMenu") as HTMLElement;
+
+  const open = document.getElementById("open") as HTMLElement;
+  const close = document.getElementById("close") as HTMLElement;
+
+  menu.addEventListener("click", () => {
+    sideMenu.classList.toggle("left-[100%]");
+    sideMenu.classList.toggle("left-0");
+
+    iconMenu.classList.toggle("text-orange-500");
+
+    open.classList.toggle("hidden");
+    open.classList.toggle("block");
+    close.classList.toggle("block");
+    close.classList.toggle("hidden");
+    close.classList.toggle("text-sky-500");
+  });
+
+  window.addEventListener("scroll", () => {
+    window.scrollY > 100
+      ? nav.classList.add("backdrop-blur")
+      : nav.classList.remove("backdrop-blur");
+
+    // window.scrollY > 600
+    //   ? (logo.classList.add("text-sky-400"),
+    //     logo.classList.add("bg-white"),
+    //     textNavBar.classList.add("text-white"), //
+    //     textNavBar.classList.remove("text-pasive"))
+    //   : logo.classList.remove("text-white");
+  });
+</script>
