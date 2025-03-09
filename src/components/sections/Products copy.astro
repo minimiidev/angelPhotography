@@ -12,13 +12,10 @@ import promocion from "@/assets/product/promocion.jpg";
 import quinceanera from "@/assets/product/quinceanera.jpg";
 ---
 
-<section
-  id="portfolio"
-  class="flex flex-col mt-[100px] container h-fit items-center justify-center gap-6"
->
-  <h1 class="h2 font-birthstone w-full text-right">PORTAFOLIO</h1>
-  <div class="lg:grid-cols-5 grid-rows-8 grid h-full grid-cols-2 gap-4">
-    <div class="col-span-2 col-start-1 row-start-4">
+<section class="flex flex-col items-center justify-center w-full h-screen">
+  <h1 class="h2 font-birthstone">PRODUCTOS</h1>
+  <div class="grid h-full grid-cols-5 grid-rows-3 gap-4 px-10">
+    <div class="col-start-1 row-span-2">
       <Image
         src={boda}
         quality={80}
@@ -29,7 +26,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover w-full h-full"
       />
     </div>
-    <div class="col-start-2 row-start-1">
+    <div class="col-start-2">
       <Image
         src={cumpleanos}
         quality={80}
@@ -40,7 +37,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover w-full h-full"
       />
     </div>
-    <div class="row-start-3">
+    <div class="col-start-2">
       <Image
         src={corporativo}
         quality={80}
@@ -51,7 +48,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover w-full h-full"
       />
     </div>
-    <div class="lg:col-start-1 row-start-8 col-span-2 col-start-1">
+    <div class="col-span-2 col-start-1">
       <Image
         src={artista}
         quality={80}
@@ -62,7 +59,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover w-full h-full"
       />
     </div>
-    <div class="col-start-2 row-span-2 row-start-2">
+    <div class="col-start-3 row-span-3 row-start-1">
       <Image
         src={embarazada}
         quality={80}
@@ -75,7 +72,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover w-full h-full"
       />
     </div>
-    <div class="col-start-1 row-span-2 row-start-1">
+    <div class="col-start-4 row-span-2 row-start-1">
       <Image
         src={quinceanera}
         quality={80}
@@ -86,7 +83,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover object-top w-full h-full"
       />
     </div>
-    <div class="col-start-1 row-start-5">
+    <div class="col-start-5 row-start-1">
       <Image
         src={bebe}
         quality={80}
@@ -97,7 +94,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover w-full h-full"
       />
     </div>
-    <div class="col-start-2 row-start-5">
+    <div class="col-start-4">
       <Image
         src={promocion}
         quality={80}
@@ -108,9 +105,12 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
         class="object-cover w-full h-full"
       />
     </div>
-    <div class="col-span-2 col-start-1 row-span-2 row-start-6">
+    <div class="col-start-5 row-span-2 row-start-2">
       <Image
         src={graduacion}
+        quality={80}
+        width={500}
+        height={500}
         loading="lazy"
         alt="graduacion"
         class="object-cover w-full h-full"
@@ -123,8 +123,7 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
   .grid {
     & div {
       overflow: hidden;
-      min-width: 140px;
-      min-height: 200px;
+      width: 100%;
       height: 100%;
       background: orange;
     }
@@ -136,8 +135,6 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
 
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  gsap.registerPlugin(ScrollTrigger);
-
   const setInitialStates = () => {
     gsap.set(".grid div", {
       opacity: 0,
@@ -146,53 +143,21 @@ import quinceanera from "@/assets/product/quinceanera.jpg";
     return "";
   };
 
-  // const animateGrid = () => {
-  //   const tl = gsap.timeline({
-  //     defaults: {
-  //       ease: "power3.inOut",
-  //       duration: 2,
-  //     },
-  //   });
-
-  //   tl.to(".grid div", {
-  //     opacity: 1,
-  //     y: 0,
-  //     x: 0,
-  //     stagger: 0.15,
-  //   });
-
-  //   return tl;
-  // };
-
-  // const grid = document.querySelector(".grid");
-
-  gsap.fromTo(
-    ".grid div",
-    {
-      opacity: 0,
-    },
-    {
-      opacity: 1,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: "#portfolio",
-        start: "center center",
-        // end: "top top",
-        // scrub: true,
-        markers: true,
+  const animateGrid = () => {
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power3.inOut",
+        duration: 2,
       },
-    }
-  );
+    });
 
-  gsap.to("#portfolio", {
-    backgroundColor: "#f6f6f6",
-    transition: "background-color 1s ease-in-out",
-    scrollTrigger: {
-      trigger: "#portfolio",
-      start: "top top",
-      end: "top top",
-      scrub: true,
-      // markers: true,
-    },
-  });
+    tl.to(".grid div", {
+      opacity: 1,
+      y: -100,
+      x: 0,
+      stagger: 0.15,
+    });
+
+    return tl;
+  };
 </script>

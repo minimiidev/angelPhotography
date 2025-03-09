@@ -1,15 +1,13 @@
 ---
-import { Image } from "astro:assets";
 
-import heroImg from "@/assets/hero/heroImg.avif";
 ---
 
-<div id="loadingBg" class="z-2 absolute w-full h-screen bg-black">
+<div id="loadingBg" class="fixed top-0 right-0 z-50 w-full h-screen bg-black">
   <article
     id="loadingText"
-    class="z-3 top-1/2 left-1/2 text-center w-full fixed overflow-hidden -translate-x-1/2 -translate-y-1/2"
+    class="z-3 top-1/2 left-1/2 text-center w-full fixed overflow-hidden -translate-x-1/2 -translate-y-1/2 flex items-center justify-center h-[80px]"
   >
-    <p class="h1 font-birthstone">Loading ...</p>
+    <p class="h2 font-birthstone">Loading ...</p>
   </article>
 </div>
 
@@ -24,8 +22,10 @@ import heroImg from "@/assets/hero/heroImg.avif";
 
   const setInitialStates = () => {
     gsap.set(preLoadingText, {
-      yPercent: 100,
+      yPercent: 130,
     });
+
+    return "";
   };
 
   const preLoaderAnimation = () => {
@@ -35,21 +35,18 @@ import heroImg from "@/assets/hero/heroImg.avif";
       },
     });
 
-    tl
+    tl.to(preLoadingText, {
+      yPercent: 0,
+      delay: 0.3,
+    })
       .to(preLoadingText, {
-        yPercent: 0,
-        delay: 0.3,
-      })
-      .to(preLoadingText, {
-        yPercent: -105,
-        delay: 1,
+        yPercent: -200,
+        delay: 0.5,
       })
       .to(preLoadingBg, {
         yPercent: -100,
-        delay: 1.5,
         ease: "power4.inOut",
-      }),
-      "<";
+      });
 
     return tl;
   };

@@ -32,22 +32,22 @@
 }
 
 body {
-  @apply bg-black text-white;
+  @apply text-white bg-black;
 }
 .h1 {
-  @apply text-[60px] font-birthstone leading-12 font-bold tracking-wide;
+  @apply font-birthstone text-[60px] md:text-7xl lg:text-9xl leading-12;
 }
 .h2 {
-  @apply text-4xl font-birthstone font-bold tracking-widest;
+  @apply font-birthstone md:text-6xl text-5xl font-bold tracking-widest;
 }
 .h3 {
-  @apply text-3xl font-neue-montreal  font-bold tracking-wider;
+  @apply font-neue-montreal text-3xl font-bold tracking-wider;
 }
 .h4 {
-  @apply text-2xl font-neue-montreal  font-bold tracking-wider;
+  @apply font-neue-montreal text-2xl font-bold tracking-wider;
 }
 
 .p,
 .span {
-  @apply text-base font-neue-montreal md:text-lg;
+  @apply font-neue-montreal md:text-lg text-base;
 }

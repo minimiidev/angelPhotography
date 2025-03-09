@@ -9,8 +9,6 @@ import Socials from "../shared/hero/Socials.astro";
 <section
   class="relative flex items-center justify-center w-full h-screen overflow-hidden"
 >
-  <!-- <Loading /> -->
-
   <!-- HERO  -->
   <Image
     id={"heroImg"}
@@ -19,11 +17,11 @@ import Socials from "../shared/hero/Socials.astro";
     class="-z-10 absolute object-cover w-full h-full overflow-hidden"
     quality={100}
   />
-  <div id="heroContainer" class="container h-screen">
+  <div id="heroContainer" class="container relative h-full">
     <article
-      class="relative z-10 flex flex-col items-center justify-center w-full h-full"
+      class="bottom-4 md:bottom-[42%] absolute z-10 flex flex-col items-center justify-center"
     >
-      <h2 class="h1 bottom-4 absolute mb-5 text-left">ANGEL PHOTOGRAPHY</h2>
+      <h2 class="h1 mb-5 text-left">ANGEL PHOTOGRAPHY</h2>
     </article>
     <!-- SOCIALS -->
     <Socials />
